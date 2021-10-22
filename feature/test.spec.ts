@@ -25,8 +25,25 @@ test.only('test', async ({ page }) => {
   await page.click('text=Non stopRefundable >> div');
   await page.click('text=PreferenceNon stopRefundable');
   await page.click('.c-switch');
+
+  const k = await page.$('.result-col-inner div:nth-child(11) .summary-section .time-group .timeline-widget .c-timeline-wrapper div:nth-child(6)');
+  
+  const i = await page.$('.result-col-inner .summary-section .time-group .timeline-widget .c-timeline-wrapper div:nth-child(6)');
+  
   await page.click('.price-group .price .c-price-display'); //.result-wrpr
   await page.click('text=05:30 5hr 10min 1 stop 10:4023962');
+
+  // .c-timeline-wrapper div:nth-child(6)
+  // .result-col-inner div:nth-child(2) .summary-section .time-group .timeline-widget .c-timeline-wrapper div:nth-child(6)
+  // .result-col-inner div:nth-child(3) .summary-section .time-group .timeline-widget .c-timeline-wrapper div:nth-child(6)
+  //                   div:nth-child(11) .summary-section .time-group .timeline-widget .c-timeline-wrapper div:nth-child(6)
+
+  await page.innerHtml('.price-group .price .c-price-display');
+  
+  const result = await page.evaluate(selector => document.querySelectorAll(selector) , page.$$('.price-group .price .c-price-display'));
+
   await page.click('button:has-text("Book")');
   await page.click('text=REVIEW ITINERARY');
+
+  
 });
