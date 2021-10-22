@@ -1,0 +1,16 @@
+{
+  "name": "playwright-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test --config=playwright.config.ts",
+    "test:debug": "npx playwright test --config=playwright.config.ts --debug"
+  },
+  "keywords": [],
+  "author": "AbhinavS",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "1.15.0"
+  }
+}
