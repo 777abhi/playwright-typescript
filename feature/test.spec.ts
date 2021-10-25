@@ -1,4 +1,4 @@
-//code generated using codegen
+//refined code using tools
 const { test, expect } = require('@playwright/test');
 test.only('test', async ({ page }) => {
 
@@ -20,13 +20,12 @@ test.only('test', async ({ page }) => {
   await page.click('text=AdultsAbove 12 years1 >> :nth-match(button, 2)');
   await page.click('text=ChildrenBetween 2-12 years0 >> :nth-match(button, 2)');
   await page.click('button:has-text("SEARCH")');
-  
+
   await page.waitForSelector("//div[@class='non-stop']//span[@class='u-ib u-rfloat']/*")
   const locator = await page.locator("//div[@class='non-stop']//span[@class='u-ib u-rfloat']/*");
   await expect(locator).toHaveClass('c-switch switch-off');
   await page.click('.switch-handle');
   await expect(locator).toHaveClass('c-switch switch-on');
-
 
   const locatorAllPriceList = "//div[@class='result-col outr']//div[@class='result-col-inner']//div[contains(@class,'price-group')]";
   await page.waitForSelector(locatorAllPriceList);
@@ -39,7 +38,7 @@ test.only('test', async ({ page }) => {
     lastRowForFlight = flightPriceOnPage;
   }
 
-  await lastRowForFlight.click(); 
+  await lastRowForFlight.click();
 
 
   await page.click('button:has-text("Book")');
