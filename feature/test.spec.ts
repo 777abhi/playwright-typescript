@@ -1,6 +1,7 @@
+//code generated using codegen
 const { test, expect } = require('@playwright/test');
 test.only('test', async ({ page }) => {
-  
+
   await page.goto('https://www.flipkart.com/');
   await page.click('text=✕');
   await page.click('img[alt="Travel"]');
@@ -13,37 +14,36 @@ test.only('test', async ({ page }) => {
   await page.fill('input[name="0-arrivalcity"]', 'Chennai');
   await page.click('text=Chennai, IndiaMAA');
   await page.click('input[name="0-datefrom"]');
-  await page.click('table:nth-child(2) tbody tr:nth-child(1) td:nth-child(2)'); // 1st Nov   or can use 
-  await page.click('table:nth-child(2) tbody tr:nth-child(5) td:nth-child(3)'); // 30th Nov or can use 
+  await page.click('table:nth-child(2) tbody tr:nth-child(1) td:nth-child(2)'); // 1st Nov    
+  await page.click('table:nth-child(2) tbody tr:nth-child(5) td:nth-child(3)'); // 30th Nov 
   await page.click('input[name="0-travellerclasscount"]');
   await page.click('text=AdultsAbove 12 years1 >> :nth-match(button, 2)');
   await page.click('text=ChildrenBetween 2-12 years0 >> :nth-match(button, 2)');
   await page.click('button:has-text("SEARCH")');
-  await page.click('text=Non stopRefundable >> div');
-  await page.click('.c-switch');
+  
+  await page.waitForSelector("//div[@class='non-stop']//span[@class='u-ib u-rfloat']/*")
+  const locator = await page.locator("//div[@class='non-stop']//span[@class='u-ib u-rfloat']/*");
+  await expect(locator).toHaveClass('c-switch switch-off');
   await page.click('.switch-handle');
-  await page.click('text=Non stopRefundable >> div');
-  await page.click('text=PreferenceNon stopRefundable');
-  await page.click('.c-switch');
+  await expect(locator).toHaveClass('c-switch switch-on');
 
-  const k = await page.$('.result-col-inner div:nth-child(11) .summary-section .time-group .timeline-widget .c-timeline-wrapper div:nth-child(6)');
-  
-  const i = await page.$('.result-col-inner .summary-section .time-group .timeline-widget .c-timeline-wrapper div:nth-child(6)');
-  
-  await page.click('.price-group .price .c-price-display'); //.result-wrpr
-  await page.click('text=05:30 5hr 10min 1 stop 10:4023962');
 
-  // .c-timeline-wrapper div:nth-child(6)
-  // .result-col-inner div:nth-child(2) .summary-section .time-group .timeline-widget .c-timeline-wrapper div:nth-child(6)
-  // .result-col-inner div:nth-child(3) .summary-section .time-group .timeline-widget .c-timeline-wrapper div:nth-child(6)
-  //                   div:nth-child(11) .summary-section .time-group .timeline-widget .c-timeline-wrapper div:nth-child(6)
+  const locatorAllPriceList = "//div[@class='result-col outr']//div[@class='result-col-inner']//div[contains(@class,'price-group')]";
+  await page.waitForSelector(locatorAllPriceList);
+  await page.waitForSelector("//div[contains(@class,'c-flight-listing-split-row selected hide-detail')]//div[contains(@class,'label br')][normalize-space()='non-stop']");
+  await page.waitForTimeout(1000);
+  const allFlightsPriceOnPage = await page.$$(locatorAllPriceList);
+  let lastRowForFlight;
+  for await (const flightPriceOnPage of allFlightsPriceOnPage) {
+    console.log(await flightPriceOnPage.innerText());
+    lastRowForFlight = flightPriceOnPage;
+  }
 
-  await page.innerHtml('.price-group .price .c-price-display');
-  
-  const result = await page.evaluate(selector => document.querySelectorAll(selector) , page.$$('.price-group .price .c-price-display'));
+  await lastRowForFlight.click(); 
+
 
   await page.click('button:has-text("Book")');
   await page.click('text=REVIEW ITINERARY');
 
-  
+
 });

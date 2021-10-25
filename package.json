@@ -11,6 +11,6 @@
   "author": "AbhinavS",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "1.15.0"
+    "@playwright/test": "1.16.0"
   }
 }
