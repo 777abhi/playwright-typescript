@@ -1,63 +1,69 @@
 //flipkart.spec.ts
-const { test, expect } = require("@playwright/test");
-test("test", async ({ page }) => {
+import test from "../helper/BasePage";
 
-  test.step("Goto flipkart.com", async () => {
-
+test("Book Flight from Flipkart.com", async ({
+  homePage,
+  travelFlightsPage,
+  travelSearchPage,
+}) => {
+  await test.step("Goto flipkart.com", async () => {
+    await homePage.navigateTo("/");
   });
-  test.step("Skip login", async () => {
-
+  await test.step("Skip login", async () => {
+    await homePage.closeLoginPopup();
   });
-  test.step("Goto Travel", async () => {
-
+  await test.step("Goto Travel", async () => {
+    await homePage.navigateToPage("Travel");
   });
-  test.step("Verify that one way is selected by default", async () => {
-
+  await test.step("Verify that one way is selected by default", async () => {
+    await travelFlightsPage.verifyOneWayIsSelected();
   });
-  test.step("Click on round trip", async () => {
-
+  await test.step("Click on round trip", async () => {
+    await travelFlightsPage.clickRoundTrip();
   });
-  test.step("From - Kolkata", async () => {
-
+  await test.step("From - Kolkata", async () => {
+    await travelFlightsPage.selectFromAs("Kolkata");
   });
-  test.step("To - Chennai", async () => {
-
+  await test.step("To - Chennai", async () => {
+    await travelFlightsPage.selectToAs("Chennai");
   });
-  test.step("Depart on Nov 1", async () => {
-
+  await test.step("Depart on Nov 1", async () => {
+    await travelFlightsPage.selectDepartDate();
   });
-  test.step("Return on Nov 30", async () => {
-
+  await test.step("Return on Nov 30", async () => {
+    await travelFlightsPage.selectArrivalDate();
   });
-  test.step("Adult 2", async () => {
-
+  await test.step("Adult 2", async () => {
+    await travelFlightsPage.selectAdult();
   });
-  test.step("Child 1", async () => {
-
+  await test.step("Child 1", async () => {
+    await travelFlightsPage.selectChild();
   });
-  test.step("Economy should be selected", async () => {
-
+  await test.step("Economy should be selected", async () => {
+    await travelFlightsPage.verifyEconomyIsSelected();
   });
-  test.step("Click on the search", async () => {
-
+  await test.step("Click on the search", async () => {
+    await travelFlightsPage.navigateToPage("SEARCH");
   });
-  test.step("Verify non-stop is not selected", async () => {
-
+  await test.step("Verify non-stop is not selected", async () => {
+    await travelSearchPage.verifyNonStopIsSelected();
   });
-  test.step("Click on the non-stop", async () => {
-
+  await test.step("Click on the non-stop", async () => {
+    await travelSearchPage.selectNonStop();
   });
-  test.step("print all the prices", async () => {
-
+  await test.step("print all the prices", async () => {
+    await travelSearchPage.printAllOutboundFlights();
   });
-  test.step("Select the last flight", async () => {
-
+  await test.step("Select the last flight", async () => {
+    await travelSearchPage.selectLastOutboundFlight();
   });
-  test.step("Click on the book button", async () => {
-
+  await test.step("Click on the book button", async () => {
+    await travelSearchPage.navigateToReviewOrder();
   });
-  test.step("Verify the page navigates to the review store online", async () => {
-
-  });
-
+  await test.step(
+    "Verify the page navigates to the review store online",
+    async () => {
+      await travelSearchPage.reviewItenerary();
+    }
+  );
 });
