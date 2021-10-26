@@ -1,8 +1,7 @@
 # Run Test
-`npm test
-or
-npx playwright test --config=playwright.config.ts`
+`"npm test"
+npx "playwright test --config=playwright.config.ts"`
 # Run Test with report
-`npm run test:debug
+`"npm run test:debug"
 or
-npx playwright test --config=playwright.config.ts --debug`
+"npx playwright test --config=playwright.config.ts --debug"`
