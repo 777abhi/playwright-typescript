@@ -1,7 +1,6 @@
 # Run Test
 `"npm test"
-npx "playwright test --config=playwright.config.ts"`
-# Run Test with report
-`"npm run test:debug"
 or
-"npx playwright test --config=playwright.config.ts --debug"`
+"npx playwright test --config=playwright.config.ts"`
+
+[Test Report Sample](playwright-typescript/Playwright%20Test%20Report.pdf)
