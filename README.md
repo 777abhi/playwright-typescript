@@ -1,9 +1,24 @@
+# Clone repo
+git clone https://github.com/777abhi/playwright-typescript.git
+
+# Install all dependencies 
+npm install
+
 # Run Test
-`"npm test"
-or
-"npx playwright test --config=playwright.config.ts"`
+"npm test" or "npx playwright test --config=playwright.config.ts"
 
-[My first ever blog on - How to approach for automating an End 2 End scenario with playwright especially when you are not good with selectors.](https://abhinavsharmanotes.blogspot.com/2021/10/how-to-approach-for-automating-end-2.html)
+# Run Test in Debug mode
+"npm run test:debug" or "npx playwright test --config=playwright.config.ts --debug"
 
-[Test Report Generated using Playwright reporter - html](Playwright%20Test%20Report.pdf)
+# Run Test with HTML playwright report
+"npm run test:report:html" or "npx playwright test --reporter=html"
+
+# Blog
+[How to approach for automating an End 2 End scenario with playwright especially when you are not good with selectors.](https://abhinavsharmanotes.blogspot.com/2021/10/how-to-approach-for-automating-end-2.html)
+
+# Run Test with HTML playwright report
+"npm run test:report:html" or "npx playwright test --reporter=html"
+
+# HTML playwright report 
+[html report as PDF](Playwright%20Test%20Report.pdf)
 
