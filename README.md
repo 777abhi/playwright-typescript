@@ -16,8 +16,6 @@ npm install
 # Blog
 [How to approach for automating an End 2 End scenario with playwright especially when you are not good with selectors.](https://abhinavsharmanotes.blogspot.com/2021/10/how-to-approach-for-automating-end-2.html)
 
-# Run Test with HTML playwright report
-"npm run test:report:html" or "npx playwright test --reporter=html"
 
 # HTML playwright report 
 [html report as PDF](Playwright%20Test%20Report.pdf)
