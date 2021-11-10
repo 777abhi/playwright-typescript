@@ -1,7 +1,6 @@
 //flipkart.spec.ts
 import test from "../helper/BasePage";
 
-
 test("Book Flight from Flipkart.com", async ({
   homePage,
   travelFlightsPage,

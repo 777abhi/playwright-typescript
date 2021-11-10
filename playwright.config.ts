@@ -8,8 +8,9 @@ const config: PlaywrightTestConfig = {
       use: {
         browserName: "chromium",
         headless: false,
+        video:'on',
         launchOptions: {
-          //slowMo:1000
+          //slowMo:2000
         },
       },
     },

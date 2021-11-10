@@ -1,3 +1,8 @@
+# Pre-requisite
+### Install NodeJS and Git from below links befor proceeding with below commands-
+[NodeJS](https://nodejs.org/en/)
+[GIT](https://git-scm.com/downloads) 
+
 # Clone repo
 git clone https://github.com/777abhi/playwright-typescript.git
 
@@ -19,4 +24,7 @@ npm install
 
 # HTML playwright report 
 [html report as PDF](Playwright%20Test%20Report.pdf)
+
+# User Journey test recording
+[html report as PDF](userjourney.webm)
 

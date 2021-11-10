@@ -5,6 +5,8 @@ let rdbOneWay, rdbRoundTrip;
 
 let txtBoxDepartCity, txtBoxArrivalCity, txtBoxDepartDate;
 
+let day, month, year;
+
 export class TravelFlightsPage {
   readonly page: Page;
   constructor(page: Page) {
@@ -53,14 +55,49 @@ export class TravelFlightsPage {
   async selectDepartDate() {
     await this.page.click(txtBoxDepartDate);
 
-    let locator = await this.page.locator("table:nth-child(2) tbody tr:nth-child(3) td:nth-child(2)");
-    await locator.click(); // any random depart date
+    await this.selectTodayDate(2);
+  }
+
+  async selectTodayDate(addDays = 0) {
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const date = new Date();
+    date.setDate(date.getDate() + addDays);
+    month = await monthNames[date.getMonth()];
+    year = date.getFullYear();
+
+    await this.selectCalendarDate(date.getDate(), month, year);
+  }
+
+  async selectCalendarDate(day, month, year) {
+    let locator = await this.page.locator(
+      "//div[text()='" +
+        month +
+        " " +
+        year +
+        "']/ancestor::table//button[text()='" +
+        day +
+        "']"
+    );
+    await locator.click();
   }
 
   async selectReturnDate() {
-
-    let locator = await this.page.locator("table:nth-child(2) tbody tr:nth-child(3) td:nth-child(3)");
-    await locator.click(); // any random return date
+    await this.page.click("//input[@name='0-dateto']");
+    await this.selectTodayDate(15);
   }
 
   async selectAdult() {
