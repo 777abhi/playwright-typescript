@@ -1,6 +1,7 @@
 //flipkart.spec.ts
 import test from "../helper/BasePage";
 
+
 test("Book Flight from Flipkart.com", async ({
   homePage,
   travelFlightsPage,
@@ -31,7 +32,7 @@ test("Book Flight from Flipkart.com", async ({
     await travelFlightsPage.selectDepartDate();
   });
   await test.step("Return on Nov 30", async () => {
-    await travelFlightsPage.selectArrivalDate();
+    await travelFlightsPage.selectReturnDate();
   });
   await test.step("Adult 2", async () => {
     await travelFlightsPage.selectAdult();

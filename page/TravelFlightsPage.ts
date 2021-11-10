@@ -52,15 +52,15 @@ export class TravelFlightsPage {
 
   async selectDepartDate() {
     await this.page.click(txtBoxDepartDate);
-    await this.page.click(
-      "table:nth-child(2) tbody tr:nth-child(1) td:nth-child(2)"
-    ); // 1st Nov
+
+    let locator = await this.page.locator("table:nth-child(2) tbody tr:nth-child(3) td:nth-child(2)");
+    await locator.click(); // any random depart date
   }
 
-  async selectArrivalDate() {
-    await this.page.click(
-      "table:nth-child(2) tbody tr:nth-child(5) td:nth-child(3)"
-    ); // 30th Nov
+  async selectReturnDate() {
+
+    let locator = await this.page.locator("table:nth-child(2) tbody tr:nth-child(3) td:nth-child(3)");
+    await locator.click(); // any random return date
   }
 
   async selectAdult() {
