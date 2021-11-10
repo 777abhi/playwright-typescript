@@ -1,10 +1,11 @@
 # Pre-requisite
 ### Install NodeJS and Git from below links befor proceeding with below commands-
-[NodeJS](https://nodejs.org/en/)
-[GIT](https://git-scm.com/downloads) 
+ - [NodeJS](https://nodejs.org/en/)
+ - [GIT](https://git-scm.com/downloads) 
 
 # Clone repo
 git clone https://github.com/777abhi/playwright-typescript.git
+
 
 # Install all dependencies 
 npm install
