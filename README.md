@@ -26,5 +26,5 @@ npm install
 [html report as PDF](Playwright%20Test%20Report.pdf)
 
 # User Journey test recording
-[html report as PDF](userjourney.webm)
+[Test Execution](userjourney.webm)
 
