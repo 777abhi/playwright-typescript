@@ -1,7 +1,7 @@
 //flipkart.spec.ts
 import test from "../helper/BasePage";
 
-test("Book Flight from Flipkart.com", async ({
+test.only("Book Flight from Flipkart.com", async ({
   homePage,
   travelFlightsPage,
   travelSearchPage,
@@ -45,25 +45,26 @@ test("Book Flight from Flipkart.com", async ({
   await test.step("Click on the search", async () => {
     await travelFlightsPage.navigateToPage("SEARCH");
   });
-  await test.step("Verify non-stop is not selected", async () => {
-    await travelSearchPage.verifyNonStopIsSelected();
-  });
-  await test.step("Click on the non-stop", async () => {
-    await travelSearchPage.selectNonStop();
-  });
-  await test.step("print all the prices", async () => {
-    await travelSearchPage.printAllOutboundFlights();
-  });
-  await test.step("Select the last flight", async () => {
-    await travelSearchPage.selectLastOutboundFlight();
-  });
-  await test.step("Click on the book button", async () => {
-    await travelSearchPage.navigateToReviewOrder();
-  });
-  await test.step(
-    "Verify the page navigates to the review store online",
-    async () => {
-      await travelSearchPage.reviewItenerary();
-    }
-  );
+
+  // await test.step("Verify non-stop is not selected", async () => {
+  //   await travelSearchPage.verifyNonStopIsSelected();
+  // });
+  // await test.step("Click on the non-stop", async () => {
+  //   await travelSearchPage.selectNonStop();
+  // });
+  // await test.step("print all the prices", async () => {
+  //   await travelSearchPage.printAllOutboundFlights();
+  // });
+  // await test.step("Select the last flight", async () => {
+  //   await travelSearchPage.selectLastOutboundFlight();
+  // });
+  // await test.step("Click on the book button", async () => {
+  //   await travelSearchPage.navigateToReviewOrder();
+  // });
+  // await test.step(
+  //   "Verify the page navigates to the review store online",
+  //   async () => {
+  //     await travelSearchPage.reviewItenerary();
+  //   }
+  // );
 });

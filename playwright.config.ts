@@ -1,7 +1,7 @@
 //playwright.config.ts
 import { PlaywrightTestConfig } from "@playwright/test";
 const config: PlaywrightTestConfig = {
-  timeout: 12 * 10000, // 2 minutes
+  //timeout: 12 * 10000, // 2 minutes
   //reporter:'html',
   projects: [
     {
@@ -10,7 +10,7 @@ const config: PlaywrightTestConfig = {
         browserName: "chromium",
         headless: false,
         video:'on',
-        launchOptions: {
+        launchOptions: {  
           //slowMo:2000
         },
       },
