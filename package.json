@@ -12,7 +12,7 @@
   "author": "AbhinavS",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "1.16.2",
-    "playwright": "1.16.2"
+    "@playwright/test": "^1.20.0-alpha-mar-7-2022",
+    "playwright": "^1.20.0-alpha-mar-7-2022"
   }
 }
