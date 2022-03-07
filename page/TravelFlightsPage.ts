@@ -43,13 +43,15 @@ export class TravelFlightsPage {
   async selectFromAs(departCityName) {
     await this.page.click(txtBoxDepartCity);
     await this.page.fill(txtBoxDepartCity, departCityName);
-    await this.page.click("text=Kolkata, IndiaCCU");
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await this.page.click("text=Kolkata, INCCU");
   }
 
   async selectToAs(arrivalCityName) {
     await this.page.click(txtBoxArrivalCity);
     await this.page.fill(txtBoxArrivalCity, arrivalCityName);
-    await this.page.click("text=Chennai, IndiaMAA");
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await this.page.click("text=Chennai, INMAA");
   }
 
   async selectDepartDate() {
