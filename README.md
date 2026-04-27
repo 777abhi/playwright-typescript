@@ -1,31 +1,64 @@
-# Pre-requisite
-### Install NodeJS and Git from below links befor proceeding with below commands-
- - [NodeJS](https://nodejs.org/en/)
- - [GIT](https://git-scm.com/downloads) 
+# Playwright + TypeScript E2E Framework
 
-# Clone repo
-git clone https://github.com/777abhi/playwright-typescript.git
+A production-ready starter repository for end-to-end UI test automation with Playwright and TypeScript.
 
+## Why this repo
 
-# Install all dependencies 
-npm install
+- Modern Playwright test architecture with fixtures + page objects
+- Sensible defaults for retries, reports, screenshots, and traces
+- Onboarding-first documentation to help new contributors start quickly
 
-# Run Test
-"npm test" or "npx playwright test --config=playwright.config.ts"
+## Quick start
 
-# Run Test in Debug mode
-"npm run test:debug" or "npx playwright test --config=playwright.config.ts --debug"
+```bash
+git clone <your-fork-or-repo-url>
+cd playwright-typescript
+npm ci
+npx playwright install --with-deps
+cp .env.example .env
+npm run lint
+npm test
+```
 
-# Run Test with HTML playwright report
-"npm run test:report:html" or "npx playwright test --reporter=html"
+## Available scripts
 
-# Blog
-[How to approach for automating an End 2 End scenario with playwright especially when you are not good with selectors.](https://abhinavsharmanotes.blogspot.com/2021/10/how-to-approach-for-automating-end-2.html)
+- `npm test` - run full suite
+- `npm run test:headed` - run with browser UI
+- `npm run test:debug` - open Playwright Inspector
+- `npm run test:ui` - Playwright UI mode
+- `npm run test:smoke` - run `@smoke` tests
+- `npm run test:list` - list discovered tests
+- `npm run test:report` - open HTML report
+- `npm run lint` - TypeScript static checks
+- `npm run format` - format source files
+- `npm run format:check` - check formatting
 
+## Project structure
 
-# HTML playwright report 
-[html report as PDF](Playwright%20Test%20Report.pdf)
+```text
+feature/                # Test specs
+helper/                 # Playwright fixture extensions
+page/                   # Page object models
+playwright.config.ts    # Test runner configuration
+ONBOARDING.md           # New contributor guide
+```
 
-# User Journey test recording
-[Test Execution](userjourney.webm)
+## Configuration
+
+Runtime config is handled in `playwright.config.ts`.
+
+Environment variables:
+
+- `BASE_URL` (default: `https://www.flipkart.com`)
+
+## Onboarding
+
+Read the full onboarding guide here: [ONBOARDING.md](./ONBOARDING.md)
+
+## Artifacts
+
+After execution, Playwright artifacts are available in:
+
+- `playwright-report/`
+- `test-results/`
 

@@ -1,50 +1,24 @@
-//BasePage.ts
-import { test as baseTest } from "@playwright/test";
-import { HomePage } from "../page/HomePage";
-import { TravelFlightsPage } from "../page/TravelFlightsPage";
-import { TravelSearchPage } from "../page/TravelSearchPage";
-const { _android: android } = require("playwright");
+import { test as base } from '@playwright/test';
+import { HomePage } from '../page/HomePage';
+import { TravelFlightsPage } from '../page/TravelFlightsPage';
+import { TravelSearchPage } from '../page/TravelSearchPage';
 
-const page = getMobilePage();
-
-const test = baseTest.extend<{
+type AppFixtures = {
   homePage: HomePage;
   travelFlightsPage: TravelFlightsPage;
   travelSearchPage: TravelSearchPage;
-}>({
-  homePage: async ({}, use) => {
-    await use(new HomePage(await page));
+};
+
+const test = base.extend<AppFixtures>({
+  homePage: async ({ page }, use) => {
+    await use(new HomePage(page));
   },
-  travelFlightsPage: async ({ }, use) => {
-    await use(new TravelFlightsPage(await page));
+  travelFlightsPage: async ({ page }, use) => {
+    await use(new TravelFlightsPage(page));
   },
-  travelSearchPage: async ({ }, use) => {
-    await use(new TravelSearchPage(await page));
-  },
+  travelSearchPage: async ({ page }, use) => {
+    await use(new TravelSearchPage(page));
+  }
 });
 
-
 export default test;
-async function getMobilePage() {
-  
-    // Connect to the device.
-    const [device] = await android.devices();
-    console.log(`Model: ${device.model()}`);
-    console.log(`Serial: ${device.serial()}`);
-    // Take screenshot of the whole device.
-    await device.screenshot({ path: "device.png" });
-    // --------------------- Browser -----------------------
-
-    // Launch Chrome browser.
-    await device.shell("am force-stop com.android.chrome");
-    const context = await device.launchBrowser();
-
-    // Use BrowserContext as usual.
-    const page = await context.newPage();
-    await page.goto("https://webkit.org/");
-    console.log(await page.evaluate(() => window.location.href));
-    await page.screenshot({ path: "page.png" });
-
-    return page;
-}
-

@@ -1,18 +1,34 @@
 {
   "name": "playwright-typescript",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Production-ready Playwright + TypeScript end-to-end test framework",
   "scripts": {
-    "test": "npx playwright test --config=playwright.config.ts",
-    "test:debug": "npx playwright test --config=playwright.config.ts --debug",
-    "test:report:html": "npx playwright test --reporter=html"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:report": "playwright show-report",
+    "test:list": "playwright test --list",
+    "lint": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,md,json,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{ts,md,json,yml,yaml}\""
   },
-  "keywords": [],
-  "author": "AbhinavS",
+  "keywords": [
+    "playwright",
+    "typescript",
+    "e2e"
+  ],
+  "author": "",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "devDependencies": {
-    "@playwright/test": "^1.20.0-alpha-mar-7-2022",
-    "playwright": "^1.20.0-alpha-mar-7-2022"
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^22.15.17",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
   }
 }
