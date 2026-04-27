@@ -1,55 +1,45 @@
-//TravelSearchPage.ts
-import { Page, expect } from "@playwright/test";
-
-let locatorSwitchNonStopOnOff, allFlightsPriceOnPage, lastRowForFlight;
-
-let btnBook = 'button:has-text("Book")';
-
-let switchNonStopOnOff, switchHandle, switchOn, switchOff;
-
-let allPriceList;
+import { expect, type Locator, type Page } from '@playwright/test';
 
 export class TravelSearchPage {
-  readonly page: Page;
-  constructor(page: Page) {
-    this.page = page;
-    //locators
-    switchNonStopOnOff =
-      "//div[@class='non-stop']//span[@class='u-ib u-rfloat']/*";
-    switchHandle = ".switch-handle";
-    switchOn = "c-switch switch-on";
-    switchOff = "c-switch switch-off";
-    allPriceList =
-      "//div[@class='result-col outr']//div[@class='result-col-inner']//div[contains(@class,'price-group')]";
+  private readonly switchNonStopOnOff: Locator;
+  private readonly switchHandle: Locator;
+  private readonly allPriceList: Locator;
+  private readonly bookButton: Locator;
+
+  constructor(private readonly page: Page) {
+    this.switchNonStopOnOff = page.locator("//div[@class='non-stop']//span[@class='u-ib u-rfloat']/*");
+    this.switchHandle = page.locator('.switch-handle');
+    this.allPriceList = page.locator(
+      "//div[@class='result-col outr']//div[@class='result-col-inner']//div[contains(@class,'price-group')]"
+    );
+    this.bookButton = page.locator('button:has-text("Book")');
   }
 
-  async verifyNonStopIsSelected() {
-    await this.page.waitForSelector(switchNonStopOnOff);
-    locatorSwitchNonStopOnOff = await this.page.locator(switchNonStopOnOff);
-    await expect(locatorSwitchNonStopOnOff).toHaveClass(switchOff);
+  async verifyNonStopIsSelected(): Promise<void> {
+    await expect(this.switchNonStopOnOff).toHaveClass(/switch-off/);
   }
 
-  async selectNonStop() {
-    await this.page.click(switchHandle);
-    await expect(locatorSwitchNonStopOnOff).toHaveClass(switchOn);
+  async selectNonStop(): Promise<void> {
+    await this.switchHandle.click();
+    await expect(this.switchNonStopOnOff).toHaveClass(/switch-on/);
   }
 
-  async printAllOutboundFlights() {
-    await this.page.waitForLoadState("networkidle"); // This resolves after 'networkidle'
-    allFlightsPriceOnPage = await this.page.$$(allPriceList);
+  async printAllOutboundFlights(): Promise<void> {
+    await this.page.waitForLoadState('networkidle');
+    const prices = await this.allPriceList.allInnerTexts();
+    prices.forEach((value) => console.log(value));
+  }
 
-    for await (const flightPriceOnPage of allFlightsPriceOnPage) {
-      console.log(await flightPriceOnPage.innerText());
-      lastRowForFlight = flightPriceOnPage;
-    }
+  async selectLastOutboundFlight(): Promise<void> {
+    const count = await this.allPriceList.count();
+    await this.allPriceList.nth(count - 1).click();
   }
-  async selectLastOutboundFlight() {
-    await lastRowForFlight.click();
+
+  async navigateToReviewOrder(): Promise<void> {
+    await this.bookButton.click();
   }
-  async navigateToReviewOrder() {
-    await this.page.click(btnBook);
-  }
-  async reviewItenerary() {
-    await this.page.click("text=REVIEW ITINERARY");
+
+  async reviewItinerary(): Promise<void> {
+    await this.page.click('text=REVIEW ITINERARY');
   }
 }

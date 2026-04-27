@@ -1,23 +1,24 @@
-//HomePage.ts
-import { Page } from "@playwright/test";
-var settings = require("../settings.json");
-
-let btnCross;
+import { expect, type Page } from '@playwright/test';
 
 export class HomePage {
-  readonly page: Page;
-  constructor(page: Page) {
-    this.page = page;
-    //locators
-    btnCross = "text=✕";
+  constructor(private readonly page: Page) {}
+
+  async navigateTo(path = '/'): Promise<void> {
+    await this.page.goto(path);
   }
-  async navigateTo(path) {
-    await this.page.goto(settings.baseURL + path);
+
+  async closeLoginPopupIfVisible(): Promise<void> {
+    const closeButton = this.page.locator('button:has-text("✕")');
+    if (await closeButton.isVisible().catch(() => false)) {
+      await closeButton.click();
+    }
   }
-  async closeLoginPopup() {
-    await this.page.click(btnCross);
+
+  async navigateToPage(pageName: string): Promise<void> {
+    await this.page.click(`img[alt="${pageName}"]`);
   }
-  async navigateToPage(PageName) {
-    await this.page.click('img[alt="' + PageName + '"]');
+
+  async expectLoaded(): Promise<void> {
+    await expect(this.page).toHaveURL(/flipkart\.com/);
   }
 }
